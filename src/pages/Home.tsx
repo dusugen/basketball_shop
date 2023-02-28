@@ -92,6 +92,7 @@ function Home() {
   useEffect(() => {
     fetchBasket();
     isSearch.current = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   // Генерация  компонентов мячей
