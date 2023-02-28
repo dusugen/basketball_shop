@@ -42,7 +42,6 @@ const BallBlock: React.FC<BallBlockProps> = ({
     );
   });
 
-  //CHANGE PIZZA'S TYPE
   const [activeType, setActiveType] = useState(0);
   const typeNames = ["Indoor", "Universal"];
 
@@ -60,7 +59,6 @@ const BallBlock: React.FC<BallBlockProps> = ({
     );
   });
 
-  // добавляем мяч в корзину(массив)
   const onClickAdd = () => {
     const item: CartItem = {
       id,

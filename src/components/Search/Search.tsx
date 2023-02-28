@@ -20,7 +20,6 @@ const Search = () => {
     updateSearchValue(event.target.value);
   };
 
-  //  функция для обращения к серверу спустя время
   const updateSearchValue = useMemo(
     () =>
       debounce((value: string) => {
@@ -70,7 +69,7 @@ const Search = () => {
         placeholder="Найти мяч..."
         onChange={onChangeInput}
       />
-      {value && ( // добавляем иконку удаления только при наличии текста
+      {value && (
         <svg
           onClick={() => {
             onClickClear();

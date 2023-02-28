@@ -38,13 +38,13 @@ function Home() {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  const fetchBasket = async () => {
+  const fetchBasket = useCallback(() => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const sortBy = sort.sortProperty.replace("-", "");
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&name=${searchValue}` : "";
 
-    await dispatch(
+    dispatch(
       fetchBall({
         currentPage: String(currentPage),
         category,
@@ -53,7 +53,7 @@ function Home() {
         search,
       })
     );
-  };
+  }, [categoryId, sort, searchValue, currentPage, dispatch]);
 
   useEffect(() => {
     if (isMounted.current) {
@@ -68,7 +68,6 @@ function Home() {
   }, [categoryId, sort.sortProperty, searchValue, currentPage, navigate]);
 
   // Если был первый рендер, проверяем URL-параметры и сохраняем в redux
-
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(
@@ -92,10 +91,8 @@ function Home() {
   useEffect(() => {
     fetchBasket();
     isSearch.current = false;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+  }, [categoryId, sort.sortProperty, searchValue, currentPage, fetchBasket]);
 
-  // Генерация  компонентов мячей
   const balls = items.map((obj: any) => <BallBlock key={obj.id} {...obj} />);
 
   const skeletons = [...new Array(4)].map((_, index) => (
