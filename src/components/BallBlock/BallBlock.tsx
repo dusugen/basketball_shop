@@ -99,6 +99,7 @@ const BallBlock: React.FC<BallBlockProps> = ({
                 fill="white"
               />
             </svg>
+            &nbsp;
             <span>Добавить</span>
             {addedCount > 0 && <i>{addedCount}</i>}
           </button>
